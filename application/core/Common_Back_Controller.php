@@ -21,28 +21,31 @@ class Common_Back_Controller extends MX_Controller {
      */
     public function check_admin_user_session(){
         $page_slug = $this->router->fetch_method();
-        $allowed_pages = array('admin'); //these pages/methods do not require user authentication
-        $allowed_control = 'admin'; //methods of this controller does not require authentication
+        $allowed_pages = array('login'); //these pages/methods do not require user authentication
+        $allowed_control = 'login'; //methods of this controller does not require authentication
         $current_control = $this->router->fetch_class(); // get current controller, class = controller
         
         if(!is_admin_logged_in() && (in_array($page_slug,$allowed_pages)) && $current_control == $allowed_control){
             return TRUE; //session is empty and pages is not restricted
         }else{
             //either page is resticted or session exist
-            
+           
             if(!is_admin_logged_in()){
                 redirect(''); //redirect to home/login if session not exit
             }
             
             //user session exists
-            $user_sess_data = $_SESSION[ $this->admin_user_session_key ]; //user session array
+            $user_sess_data = $_SESSION[$this->admin_user_session_key]; //user session array
+          
             $session_u_id = $user_sess_data['id']; //user ID
-            $where = array('id'=>$session_u_id,'status'=>0); //status:0 means active 
+            $where = array('id'=>$session_u_id,'status'=>1); //status:0 means active 
+            
             $check = $this->common_model->is_data_exists($this->tbl_users,$where);
+
 
             if($check === FALSE){
                //user is either deleted or is inactivated
-               $this->logout(); //force logout
+               $this->admin_logout(); //force logout
             }
             
             if(empty($page_slug)){
@@ -66,7 +69,7 @@ class Common_Back_Controller extends MX_Controller {
     function admin_logout($is_redirect=TRUE){
         
         // instead of destroying whole session data, we will just unset biz user session data
-        $this->session->sess_destroy();
+       
         unset($_SESSION[$this->admin_user_session_key]); 
         if($is_redirect)
             redirect('login');  //redirect only when $is_redirect is set to TRUE

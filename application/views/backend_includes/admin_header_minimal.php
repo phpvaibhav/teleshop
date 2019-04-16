@@ -24,6 +24,8 @@
         apply the skin class to the body tag so the changes take effect.
   -->
   <link rel="stylesheet" href="<?php echo $backend_assets;?>dist/css/skins/skin-md-blue.min.css">
+  <link rel="stylesheet" href="<?php echo $backend_assets;?>custom/css/toastr.css">
+  <link rel="stylesheet" href="<?php echo $backend_assets;?>custom/css/custom.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -51,9 +53,11 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" id="admin_base_url" data-base-url="<?php echo base_url(); ?>">
 <div class="wrapper">
-
+  <div class="preloader" id="tl_admin_loader">
+      <div class="spinner"></div>
+   </div>
   <!-- Main Header -->
   <header class="main-header">
 
@@ -104,22 +108,22 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="<?php echo $backend_assets;?>dist/img/user-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo $_SESSION[ADMIN_USER_SESS_KEY]['profileImage'];?>" class="user-image" alt="<?php echo $_SESSION[ADMIN_USER_SESS_KEY]['fullName'];?>">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Thanh Nguyen</span>
+              <span class="hidden-xs"><?php echo $_SESSION[ADMIN_USER_SESS_KEY]['fullName'];?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="<?php echo $backend_assets;?>dist/img/user-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo $_SESSION[ADMIN_USER_SESS_KEY]['profileImage'];?>" class="img-circle" alt="<?php echo $_SESSION[ADMIN_USER_SESS_KEY]['fullName'];?>">
 
                 <p>
-                  Thanh Nguyen <br> <small>Software Developer</small>
-                  <small>Member since Nov. 2012c</small>
+                 <?php echo $_SESSION[ADMIN_USER_SESS_KEY]['fullName'];?> <br> <small><?php echo $_SESSION[ADMIN_USER_SESS_KEY]['userRole'];?></small>
+                 <!--  <small>Member since Nov. 2012c</small> -->
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
+            <!--   <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
@@ -131,15 +135,15 @@ desired effect
                     <a href="#">Friends</a>
                   </div>
                 </div>
-                <!-- /.row -->
-              </li>
+              
+              </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo base_url().'profile';?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url().'dashboard/adminLogout';?>" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -161,17 +165,17 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo $backend_assets;?>dist/img/user-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo $_SESSION[ADMIN_USER_SESS_KEY]['profileImage'];?>" class="img-circle" alt="<?php echo $_SESSION[ADMIN_USER_SESS_KEY]['fullName'];?>">
         </div>
         <div class="pull-left info">
-          <p>Thanh Nguyen</p>
+          <p><?php echo $_SESSION[ADMIN_USER_SESS_KEY]['fullName'];?></p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="javascript:void();"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
+   <!--    <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
@@ -179,7 +183,7 @@ desired effect
                 </button>
               </span>
         </div>
-      </form>
+      </form> -->
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
@@ -204,3 +208,17 @@ desired effect
     </section>
     <!-- /.sidebar -->
   </aside>
+
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <?php echo ucfirst($title); ?>
+       <!--  <small>Optional description</small> -->
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol>
+    </section>

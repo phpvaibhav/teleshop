@@ -3,9 +3,7 @@
 class Login extends Common_Back_Controller {
 		public function __construct() {
 		parent::__construct();
-		if($this->session->userdata('id') != null):
-			redirect(site_url().'dashboard');
-		endif;
+		
 		$this->load->model('login_model');
 		$this->load->model('common_model');		
     }

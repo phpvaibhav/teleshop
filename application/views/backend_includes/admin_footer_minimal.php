@@ -1,5 +1,8 @@
+  </div>
+  <!-- /.content-wrapper -->
   <?php $backend_assets = base_url().CRM_ADMIN_ASSETS;?>
   <!-- Main Footer -->
+
   <footer class="main-footer">
     <!-- To the right -->
  <!--    <div class="pull-right hidden-xs">
@@ -18,6 +21,7 @@
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo $backend_assets;?>plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
+
 <script src="<?php echo $backend_assets;?>bootstrap/js/bootstrap.min.js"></script>
 <!-- Material Design -->
 <script src="<?php echo $backend_assets;?>dist/js/material.min.js"></script>
@@ -28,5 +32,8 @@
 <!-- AdminLTE App -->
 <script src="<?php echo $backend_assets;?>dist/js/app.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="<?php echo $backend_assets;?>custom/js/toastr.js"></script>
+<script src="<?php echo $backend_assets;?>custom/js/custom.js"></script>
 </body>
 </html>

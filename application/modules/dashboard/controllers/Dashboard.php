@@ -3,14 +3,12 @@
 class Dashboard extends Common_Back_Controller {
 	public function __construct(){
     	parent::__construct();
-    	if($this->session->userdata('id') == null):
-			redirect(site_url().'login');
-		endif;
+    	$this->check_admin_user_session();
 	
 	}
 	//view of admin login
 	function index(){
-		$data['title'] =  'Member login';	
+		$data['title'] =  'login';	
 		$this->load->admin_render_minimal('dashboard', $data);	
 	}
 	function adminLogout($is_redirect=TRUE){

@@ -23,8 +23,9 @@ class Common_model extends CI_Model {
 
     /* UPDATE RECORD FROM SINGLE TABLE */
     function updateFields($table, $data, $where){
-        $this->db->update($table, $data, $where);
-        if($this->db->affected_rows() > 0){
+        $update=$this->db->update($table, $data, $where);
+        //if($this->db->affected_rows() > 0){
+        if($update){
             return true;
         }else{
             return false;
@@ -234,7 +235,19 @@ class Common_model extends CI_Model {
         else {
             return $query->row(); //return record if found (In preveious versions, this use to return TRUE(bool) only)
         }
-    }  
+    }  //end function
+    function userProfile($userId){
+        $usersPath    = base_url().USER_AVATAR_PATH;
+        $userDefault = base_url().USER_DEFAULT_AVATAR;
+        $sql = $this->db->select('users.*,(case when (profileImage = "") 
+        THEN "'.$userDefault.'"ELSE
+        concat("'.$usersPath.'",profileImage) 
+        END) as profileImage,userRole.userType as userRole')->from('users')->join('userRole','userRole.id=users.userType')->where(array('users.id'=>$userId))->get();
+        if($sql->num_rows()):
+            return $sql->row();
+        endif;
+        return false;
+    }//end function
   
 } //end of class
 /* Do not close php tags */

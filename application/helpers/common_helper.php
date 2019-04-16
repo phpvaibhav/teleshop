@@ -357,7 +357,8 @@ function is_user_logged_in(){
         return FALSE;
     
     $user_sess_data = $_SESSION[USER_SESS_KEY]; //user session array
-    if( !empty($user_sess_data) &&  $user_sess_data['userId']) {
+
+    if( !empty($user_sess_data) &&  $user_sess_data['id']) {
        return TRUE;
     }
     return FALSE;  
@@ -373,7 +374,7 @@ function is_admin_logged_in(){
         return FALSE;
     
     $admin_user_sess_data = $_SESSION[ADMIN_USER_SESS_KEY]; //admin user session array
-    if( !empty($admin_user_sess_data) &&  $admin_user_sess_data['userId']) {
+    if( !empty($admin_user_sess_data) &&  $admin_user_sess_data['id']) {
        return TRUE;
     }
     return FALSE;  

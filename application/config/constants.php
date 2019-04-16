@@ -95,12 +95,12 @@ define('NOTIFICATION_KEY','');
 define('ADMIN_USER_SESS_KEY', 'app_admin_user_sess');
 
 //DB tables
-define('USERS', 'user');
+define('USERS', 'users');
 
 
 //uploads path
 define('USER_AVATAR_PATH', 'uploads/profile/thumb/'); //user avatar
-define('USER_DEFAULT_AVATAR', 'uploads/placeholders/placeholder_img.png'); //user placeholder image
+define('USER_DEFAULT_AVATAR', 'backend_asset/dist/img/avatar.png'); //user placeholder image
 
 //Title, Site name, Copyright, Url etc
 define('SITE_NAME','Tele-shop'); //your project name
