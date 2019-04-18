@@ -101,6 +101,8 @@ define('USERS', 'users');
 //uploads path
 define('USER_AVATAR_PATH', 'uploads/profile/thumb/'); //user avatar
 define('USER_DEFAULT_AVATAR', 'backend_asset/dist/img/avatar.png'); //user placeholder image
+define('PRODUCT_PATH', 'uploads/product/thumb/'); //user avatar
+define('PRODUCT_DEFAULT_AVATAR', 'backend_asset/dist/img/boxed-bg.jpg'); //user placeholder image
 
 //Title, Site name, Copyright, Url etc
 define('SITE_NAME','Tele-shop'); //your project name

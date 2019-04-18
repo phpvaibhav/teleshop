@@ -14,6 +14,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
+    <link rel="stylesheet" href="<?php echo $backend_assets ?>plugins/datatables/dataTables.bootstrap.css">
   <link rel="stylesheet" href="<?php echo $backend_assets;?>dist/css/AdminLTE.min.css">
   <!-- Material Design -->
   <link rel="stylesheet" href="<?php echo $backend_assets;?>dist/css/bootstrap-material-design.min.css">
@@ -190,17 +191,30 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+      <!--   <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li> -->
+      <!--   <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> -->
+        <?php if($_SESSION[ADMIN_USER_SESS_KEY]['userType']==1): ?>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-users"></i> <span>Users</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="<?php echo base_url().'users/addUser'; ?>">Add User</a></li>
+            <li><a href="<?php echo base_url().'users'; ?>">User List</a></li>
+          </ul>
+        </li>  
+      <?php endif; ?>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url().'product/addProduct'; ?>">Add Product</a></li>
+            <li><a href="<?php echo base_url().'product'; ?>">Product List</a></li>
           </ul>
         </li>
       </ul>

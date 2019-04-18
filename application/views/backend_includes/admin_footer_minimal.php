@@ -31,7 +31,8 @@
 </script>
 <!-- AdminLTE App -->
 <script src="<?php echo $backend_assets;?>dist/js/app.min.js"></script>
-
+<script src="<?php echo $backend_assets ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo $backend_assets ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="<?php echo $backend_assets;?>custom/js/toastr.js"></script>
 <script src="<?php echo $backend_assets;?>custom/js/custom.js"></script>
